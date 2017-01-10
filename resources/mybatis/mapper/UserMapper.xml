@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ck.dao.mapper.sys.UserMapper">
+	
+	<select id="queryUserList" resultType="map">
+	    SELECT
+            u.USER_ID       as "userId",
+            u.USER_PRIMARY  as "userPrimary",
+            u.USER_STATUS   as "userStatus",
+            b.MCHT_NO       as "mchtNo",
+            b.MCHT_NM       as "mchtName",
+            b.MCHT_TYPE     as "mchtType",
+            b.MCHT_UP_NO    as "mchtUpNo",
+            b.mcht_rank     as "mchtRank",
+            b.ORG_CODE      as "orgCode",
+            b.MCHT_KIND     as "mchtKind",
+            b.SOURCE        as "mchtSource",
+            b.MCHT_LEVEL    as "mchtLevel",
+            b.MCHT_STATUS   as "mchtStatus",
+            b.MCHT_MCC      as "mchtMcc",
+            b.MCHT_BRH      as "mchtBrh"
+        FROM
+           TBL_MCHT_BASE b,TBL_MCHT_USER u
+        WHERE
+           u.MCHT_NO= b.MCHT_NO
+        AND
+           u.USER_ID =20005556
+	</select>
+	
+</mapper>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds" debug="DEBUG">
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="org.springboot.sample" level="TRACE" />
+
+    <springProfile name="dev">
+        <logger name="org.springboot.sample" level="DEBUG" />
+    </springProfile>
+
+    <springProfile name="staging">
+        <logger name="org.springboot.sample" level="INFO" />
+    </springProfile>
+    
+     <substitutionProperty name="log.base" value="./log/ck" />
+    <substitutionProperty name="log.app" value="${log.base}/app" />
+    <substitutionProperty name="log.statistics" value="${log.base}/statistics" />
+    <substitutionProperty name="log.pool" value="${log.base}/pool" />
+    <substitutionProperty name="log.other" value="${log.base}/other" />
+    <substitutionProperty name="log.access" value="${log.base}/access" />
+    <substitutionProperty name="log.interface" value="${log.base}/interface" />
+    <substitutionProperty name="log.error" value="${log.base}/error" />
+    <substitutionProperty name="log.consumer.access" value="${log.base}/consumer/access" />
+    <substitutionProperty name="log.consumer.interface" value="${log.base}/consumer/interface" />
+    <substitutionProperty name="log.provider.access" value="${log.base}/provider/access" />
+    <substitutionProperty name="log.provider.interface" value="${log.base}/provider/interface" />
+    <substitutionProperty name="log.flume" value="${log.base}/flume" />
+    
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date{yyyy-MM-dd HH:mm:ss:SSS} [%t] %-5level %logger{80} %X{transactionId} - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <appender name="buslogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.app}/lifec-customer.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${log.app}/lifec-customer.log.%d{yyyy-MM-dd-HH}.%i
+            </FileNamePattern>
+            <TimeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%date{yyyy-MM-dd HH:mm:ss:SSS} [%t] %-5level [%logger{0} ] %X{transactionId} - %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="other"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.other}/other.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${log.other}/other.log.%d{yyyy-MM-dd-HH}.%i
+            </FileNamePattern>
+            <TimeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%date{yyyy-MM-dd HH:mm:ss:SSS} [%t] %-5level [%logger{80} ] %X{transactionId} - %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    
+    <appender name="com-access"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${log.access}/access.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${log.access}/access.log.%d{yyyy-MM-dd-HH}.%i
+            </FileNamePattern>
+            <TimeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    
+    <appender name="com-interface"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${log.interface}/interface.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${log.interface}/interface.log.%d{yyyy-MM-dd-HH}.%i
+            </FileNamePattern>
+            <TimeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level [%logger{0} ] %X{transactionId} - %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    
+    <!-- 统计日志  -->
+    <appender name="customer-statistics"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.statistics}/customer-statistics.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${log.statistics}/customer-statistics.log.%d{yyyy-MM-dd-HH}
+            </FileNamePattern>
+        </rollingPolicy>
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%msg%n</pattern>
+        </layout>
+    </appender>
+    
+    <appender name="com-provider-access"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${log.provider.access}/access.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${log.provider.access}/access.log.%d{yyyy-MM-dd-HH}.%i
+            </FileNamePattern>
+            <TimeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    
+    <appender name="com-provider-interface"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${log.provider.interface}/interface.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${log.provider.interface}/interface.log.%d{yyyy-MM-dd-HH}.%i
+            </FileNamePattern>
+            <TimeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    
+    <appender name="dubbo-consumer-access"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${log.consumer.access}/access.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${log.consumer.access}/access.log.%d{yyyy-MM-dd-HH}.%i
+            </FileNamePattern>
+            <TimeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    
+    <appender name="com-consumer-interface"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${log.consumer.interface}/interface.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${log.consumer.interface}/interface.log.%d{yyyy-MM-dd-HH}.%i
+            </FileNamePattern>
+            <TimeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level [%logger{0} ] %X{transactionId} - %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    
+    <appender name="Druid"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${log.pool}/druid.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${log.pool}/druid.log.%d{yyyy-MM-dd-HH}.%i
+            </FileNamePattern>
+            <TimeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%date{yyyy-MM-dd HH:mm:ss:SSS} [%t] %-5level [%logger{80} ] - %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    
+    <!-- flume  begin -->
+    <appender name="flumeLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.flume}/flume.log</file>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>flume.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>5MB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+    
+    <appender name="com-error"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${log.error}/error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${log.error}/error.log.%d{yyyy-MM-dd-HH}.%i
+            </FileNamePattern>
+            <TimeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level [%logger{0} ] %X{transactionId} - %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.gilt" additivity="error" >
+        <appender-ref ref="flumeLog" />
+    </logger>
+    <!-- flume end -->
+
+    <logger name="com.alibaba.druid" additivity="false" level="ERROR">
+        <appender-ref ref="Druid" />
+        <appender-ref ref="stdout"></appender-ref>
+    </logger>
+
+    <logger name="org.springframework" additivity="false" level="ERROR">
+        <appender-ref ref="other" />
+        <appender-ref ref="stdout"></appender-ref>
+    </logger>
+
+    <logger name="org.apache" additivity="false" level="ERROR">
+        <appender-ref ref="other" />
+    </logger>
+    <logger name="org.dozer" additivity="false" level="ERROR">
+        <appender-ref ref="other" />
+    </logger>
+    <logger name="org.mybatis" additivity="false" level="ERROR">
+        <appender-ref ref="other" />
+        <appender-ref ref="stdout"></appender-ref>
+    </logger>
+    <logger name="com.alibaba.dubbo" additivity="false" level="ERROR">
+        <appender-ref ref="other" />
+        <appender-ref ref="stdout"></appender-ref>
+    </logger>
+    
+    <logger name="client-access" additivity="false">
+        <appender-ref ref="dubbo-consumer-access" />
+    </logger>       
+    
+    <logger name="client-interface" additivity="false">
+        <appender-ref ref="com-consumer-interface" />
+    </logger>
+        
+    <logger name="provider-access" additivity="false">
+        <appender-ref ref="com-provider-access" />
+    </logger>
+    
+     <logger name="dubbo.interfaceLog" additivity="false">
+        <appender-ref ref="com-provider-interface" />
+    </logger>
+    
+    <logger name="com.ck" additivity="false">
+        <appender-ref ref="buslogAppender" />
+        <appender-ref ref="com-error" />
+        <appender-ref ref="stdout"></appender-ref>
+    </logger>
+    
+    <logger name="com-access" additivity="false">
+        <appender-ref ref="com-access" />
+        <appender-ref ref="flume-access" />
+    </logger>
+    
+    <logger name="com-interface" additivity="false">
+        <appender-ref ref="com-interface" />
+        <appender-ref ref="buslogAppender" />
+    </logger>
+    
+    <logger name="customer-statistics" additivity="false">
+        <appender-ref ref="customer-statistics" />
+    </logger>
+    
+    <root level="INFO">
+        <appender-ref ref="other" />
+        <appender-ref ref="stdout"></appender-ref>
+    </root>
+
+</configuration>
