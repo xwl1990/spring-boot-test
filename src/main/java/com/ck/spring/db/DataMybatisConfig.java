@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 
 /**
- * Description: 
+ * Description:
  *
  * @author: xieweili
- * @since: 2017年1月5日	
+ * @since: 2017年1月5日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */

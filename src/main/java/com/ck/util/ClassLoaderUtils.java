@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  * Description: 类加载帮助类
  *
  * @author: xieweili
- * @since: 2016年12月31日	
+ * @since: 2016年12月31日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
@@ -76,7 +76,8 @@ public class ClassLoaderUtils {
 
     /**
      * only support 1.7 or higher
-     * http://stackoverflow.com/questions/252893/how-do-you-change-the-classpath-within-java
+     * http://stackoverflow.com/questions/252893/how-do
+     * -you-change-the-classpath-within-java
      */
     private static void addCurrentWorkingDir2Classpath(String path2Added) {
 
@@ -121,7 +122,7 @@ public class ClassLoaderUtils {
     }
 
     /**
-     * get class loader 
+     * get class loader
      * 
      * @param cls
      * @return class loader
@@ -131,7 +132,8 @@ public class ClassLoaderUtils {
         try {
             cl = Thread.currentThread().getContextClassLoader();
         } catch (Throwable ex) {
-            // Cannot access thread context ClassLoader - falling back to system class loader...
+            // Cannot access thread context ClassLoader - falling back to system
+            // class loader...
         }
         if (cl == null) {
             // No thread context class loader -> use class loader of this class.
@@ -171,12 +173,16 @@ public class ClassLoaderUtils {
      * instances for primitives (like "int") and array class names (like
      * "String[]").
      * 
-     * @param name the name of the Class
-     * @param classLoader the class loader to use (may be <code>null</code>,
-     *            which indicates the default class loader)
+     * @param name
+     *            the name of the Class
+     * @param classLoader
+     *            the class loader to use (may be <code>null</code>, which
+     *            indicates the default class loader)
      * @return Class instance for the supplied name
-     * @throws ClassNotFoundException if the class was not found
-     * @throws LinkageError if the class file could not be loaded
+     * @throws ClassNotFoundException
+     *             if the class was not found
+     * @throws LinkageError
+     *             if the class file could not be loaded
      * @see Class#forName(String, boolean, ClassLoader)
      */
     public static Class<?> forName(String name, ClassLoader classLoader) throws ClassNotFoundException, LinkageError {
@@ -221,7 +227,8 @@ public class ClassLoaderUtils {
      * <i>not</i> support the "[]" suffix notation for primitive arrays; this is
      * only supported by {@link #forName}.
      * 
-     * @param name the name of the potentially primitive class
+     * @param name
+     *            the name of the potentially primitive class
      * @return the primitive class, or <code>null</code> if the name does not
      *         denote a primitive class or primitive array class
      */

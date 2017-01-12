@@ -4,7 +4,7 @@ package com.ck.model;
  * Description: 查询接收参数
  *
  * @author: xieweili
- * @since: 2016年12月31日	
+ * @since: 2016年12月31日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */

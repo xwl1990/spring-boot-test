@@ -32,16 +32,17 @@ public class WechatPayUtil {
         p.setMch_id(WechatPayCst.MCHT_ID);
         p.setSign_type("MD5");
         p.setNotify_url("http://www.baiduc.om");
-        //p.setDevice_info("WEB");
+        // p.setDevice_info("WEB");
         p.setTrade_type("NATIVE");//
-        //p.setSign(createSgin(p));
+        // p.setSign(createSgin(p));
         String data = WeixinXmlUtils.convertMapToXML(signAndConvertToMap(p, WechatPayCst.APP_KEY));
-        //FreemarkerUtils.getContentByFileName("wechat_pay.ftl", MapperUtils.beanToMap(p));
+        // FreemarkerUtils.getContentByFileName("wechat_pay.ftl",
+        // MapperUtils.beanToMap(p));
         System.out.println(data);
         data = OkHttpUtils.httpClientJsonPostReturnAsString(WechatPayCst.WECHAT_PAY_UNIFIEDORDER_URL, data, WechatPayCst.WECHAT_TIMEOUT);
         System.out.println("\r");
         System.out.println(data);
-        return  WeixinXmlUtils.parseReverse(data);
+        return WeixinXmlUtils.parseReverse(data);
     }
 
     /***
@@ -54,10 +55,10 @@ public class WechatPayUtil {
     public static WeixinQueryStatusRespParam orderquery(WeixinQueryStatusRespParam p) throws Exception {
         p.setAppid(WechatPayCst.APP_ID);
         p.setMch_id(WechatPayCst.MCHT_ID);
-        String q  = WeixinXmlUtils.convertMapToXML(signAndConvertToMap(p, WechatPayCst.APP_KEY));
+        String q = WeixinXmlUtils.convertMapToXML(signAndConvertToMap(p, WechatPayCst.APP_KEY));
         System.out.println(q);
         q = OkHttpUtils.httpClientJsonPostReturnAsString(WechatPayCst.WECHAT_PAY_ORDER_QUERY_URL, q, WechatPayCst.WECHAT_TIMEOUT);
-        System.out.println("\r"+q);
+        System.out.println("\r" + q);
         return WeixinXmlUtils.parseQueryStatus(q);
     }
 
@@ -90,19 +91,20 @@ public class WechatPayUtil {
         treeMap.put("sign", sign);
         return treeMap;
     }
-    
+
     /***
      * 签名
+     * 
      * @param wpo
      * @return
      */
     public static String createSgin(WeixinBaseParam p) {
         StringBuffer sb = new StringBuffer();
-        Map<String ,Object> map = new TreeMap<String, Object>(MapperUtils.beanToMap(p));
+        Map<String, Object> map = new TreeMap<String, Object>(MapperUtils.beanToMap(p));
         for (String key : map.keySet()) {
-            sb.append("&"+key+"="+map.get(key));
+            sb.append("&" + key + "=" + map.get(key));
         }
-        String data = sb.toString().substring(1)+ "&key=" + WechatPayCst.APP_KEY;
+        String data = sb.toString().substring(1) + "&key=" + WechatPayCst.APP_KEY;
         System.out.println(data);
         data = CryptUtils.encryptToMD5(data.getBytes());
         System.out.println(data.toUpperCase());
@@ -113,7 +115,7 @@ public class WechatPayUtil {
         WeixinQueryStatusRespParam wbp = new WeixinQueryStatusRespParam();
         wbp.setNonce_str(StringTool.getUUID());
         wbp.setOut_trade_no(StringTool.getOrderID());
-        //orderquery(wbp);
+        // orderquery(wbp);
 
         WeixinUnifiedOrderRespParam wpo = new WeixinUnifiedOrderRespParam();
         String id = StringTool.getUUID();

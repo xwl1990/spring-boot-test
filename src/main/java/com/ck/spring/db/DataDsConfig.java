@@ -15,10 +15,10 @@ import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.ck.util.MapperUtils;
 
 /**
- * Description: 
+ * Description:
  *
  * @author: xieweili
- * @since: 2017年1月5日	
+ * @since: 2017年1月5日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
@@ -26,25 +26,24 @@ import com.ck.util.MapperUtils;
 @Order(2)
 public class DataDsConfig {
 
-	private static final Logger LOG = LoggerFactory.getLogger(DataDsConfig.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DataDsConfig.class);
 
+    @Autowired
+    private DataConfig dataConfig;
 
-	@Autowired
-	private DataConfig dataConfig;
+    @Bean(name = "dataSource", initMethod = "init", destroyMethod = "close")
+    public DataSource dataSource() {
+        LOG.info("load datasource start.");
 
-	@Bean(name = "dataSource", initMethod="init", destroyMethod="close")
-	public DataSource dataSource() {
-		LOG.info("load datasource start.");
-		
-		try {
-			Map<String, String> dsMap = MapperUtils.beanToMap(dataConfig);
-			DataSource dataSource = DruidDataSourceFactory.createDataSource(dsMap);
-			return dataSource;
-		} catch (Exception e) {
-			LOG.error("load database error", e);
-		}
-		
-		return null;
-	}
+        try {
+            Map<String, String> dsMap = MapperUtils.beanToMap(dataConfig);
+            DataSource dataSource = DruidDataSourceFactory.createDataSource(dsMap);
+            return dataSource;
+        } catch (Exception e) {
+            LOG.error("load database error", e);
+        }
+
+        return null;
+    }
 
 }

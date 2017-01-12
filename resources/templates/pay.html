@@ -1,26 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<meta charset="GBK />
+<meta charset="UTF-8" />
 <title>Insert title here</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" media="all" />
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css" media="all" /> 
+  <script src="bootstrap/js/jquery-3.1.1.min.js"></script>
+  <script src="bootstrap/js/bootstrap.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/demo.js"></script> 
 </head>
 <body>
-<strong onclick="onBridgeReady()">TEST</strong>
+<strong onclick="onBridgeReady()">${test}</strong>
+
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="http://github.com/addyosmani/jquery-ui-bootstrap">jQuery UI Bootstrap</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="./index.html">Home</a>
+                            </li>
+                            <li>
+                                <a href="./extra.html">Extra</a>
+                            </li>
+                            <li>
+                                <a href="http://github.com/addyosmani/jquery-ui-bootstrap/issues">Feedback/Issues</a>
+                            </li>
+                            <li>
+                                <a href="http://twitter.com/addyosmani">Contact</a>
+                            </li>
+                        </ul>
+                        <div id="twitter-share" class="pull-right">
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://addyosmani.github.com/jquery-ui-bootstrap/" data-text="A new jQuery UI Bootstrap theme" data-via="addyosmani" data-size="large">Tweet</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <!-- Subhead
+        ================================================== -->
+        <header class="jumbotron subhead" id="overview">
+            <div class="container">
+                <h1>jQuery UI Bootstrap</h1>
+                <p class="lead">A Bootstrap-themed kickstart for jQuery UI widgets (v0.5).</p>
+            </div>
+        </header>
+
+
+        <div class="container">
+        <!-- Docs nav ================================================== -->
+        <div class="row">
+        <div class="span3 bs-docs-sidebar">
+            <ul class="nav nav-list bs-docs-sidenav">
+                <li><a href="#download-bootstrap"><i class="icon-chevron-right"></i> Download</a></li>
+                <li><a href="#button"><i class="icon-chevron-right"></i> Button</a></li>
+                <li><a href="#accordion"><i class="icon-chevron-right"></i> Accordion</a></li>
+                <li><a href="#dialog"><i class="icon-chevron-right"></i> Dialog</a></li>
+                <li><a href="#tabs-simple"><i class="icon-chevron-right"></i> Tabs</a></li>
+                <li><a href="#overlay"><i class="icon-chevron-right"></i> Overlay</a></li>
+                <li><a href="#block-state"><i class="icon-chevron-right"></i> Highlight/Error</a></li>
+                <li><a href="#calendar"><i class="icon-chevron-right"></i> Datepicker</a></li>
+                <li><a href="#slider"><i class="icon-chevron-right"></i> Slider</a></li>
+                <li><a href="#autocomplete"><i class="icon-chevron-right"></i> Autocomplete</a></li>
+                <li><a href="#block-menu"><i class="icon-chevron-right"></i> Menu</a></li>
+                <li><a href="#block-spinner"><i class="icon-chevron-right"></i> Spinner</a></li>
+                <li><a href="#block-icons"><i class="icon-chevron-right"></i> Icons</a></li>
+                <li><a href="#block-tooltip"><i class="icon-chevron-right"></i> Tooltip</a></li>
+            </ul>
+        </div>
+        </div>
+        </div>
+        
 </body>
 <script type="text/javascript">
 
 function onBridgeReady(){
    WeixinJSBridge.invoke(
        'getBrandWCPayRequest', {
-           "appId" £º "wx84f63587e57685cf",     //¹«ÖÚºÅÃû³Æ£¬ÓÉÉÌ»§´«Èë     
-           "timeStamp"£º" 1381266802",         //Ê±¼ä´Á£¬×Ô1970ÄêÒÔÀ´µÄÃëÊı     
-           "nonceStr" £º "T1483689068836", //Ëæ»ú´®     
-           "package" £º "prepay_id=wx2017010615284067c2c16f460494961644",     
-           "signType" £º "MD5",         //Î¢ĞÅÇ©Ãû·½Ê½£º     
-           "paySign" £º "61AE4142D82C2E1C01CAF9D521878DB5" //Î¢ĞÅÇ©Ãû 
+           "appId":"wx84f63587e57685cf",     //å…¬ä¼—å·åç§°ï¼Œç”±å•†æˆ·ä¼ å…¥     
+           "timeStamp":" 1381266802",         //æ—¶é—´æˆ³ï¼Œè‡ª1970å¹´ä»¥æ¥çš„ç§’æ•°     
+           "nonceStr":"T1483689068836", //éšæœºä¸²     
+           "package":"prepay_id=wx2017010615284067c2c16f460494961644",     
+           "signType":"MD5",         //å¾®ä¿¡ç­¾åæ–¹å¼ï¼š     
+           "paySign": "61AE4142D82C2E1C01CAF9D521878DB5" //å¾®ä¿¡ç­¾å 
        },
        function(res){     
-           if(res.err_msg == "get_brand_wcpay_request£ºok" ) {}     // Ê¹ÓÃÒÔÉÏ·½Ê½ÅĞ¶ÏÇ°¶Ë·µ»Ø,Î¢ĞÅÍÅ¶ÓÖ£ÖØÌáÊ¾£ºres.err_msg½«ÔÚÓÃ»§Ö§¸¶³É¹¦ºó·µ»Ø    ok£¬µ«²¢²»±£Ö¤Ëü¾ø¶Ô¿É¿¿¡£ 
+           if(res.err_msg == "get_brand_wcpay_requestï¼šok" ) {}     // ä½¿ç”¨ä»¥ä¸Šæ–¹å¼åˆ¤æ–­å‰ç«¯è¿”å›,å¾®ä¿¡å›¢é˜Ÿéƒ‘é‡æç¤ºï¼šres.err_msgå°†åœ¨ç”¨æˆ·æ”¯ä»˜æˆåŠŸåè¿”å›    okï¼Œä½†å¹¶ä¸ä¿è¯å®ƒç»å¯¹å¯é ã€‚ 
        }
    ); 
 }

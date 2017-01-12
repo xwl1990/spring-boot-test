@@ -3,7 +3,7 @@ package com.ck.util;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -23,6 +23,7 @@ public class MapperUtils {
 
     /**
      * convert object to json value, not include null value.
+     * 
      * @param source
      * @param destination
      */
@@ -32,6 +33,7 @@ public class MapperUtils {
 
     /**
      * convert object to json value, whether exclude null value as "null".
+     * 
      * @param source
      * @param destination
      */
@@ -40,7 +42,7 @@ public class MapperUtils {
             return "";
         }
 
-        //排除为空，将不打印空值
+        // 排除为空，将不打印空值
         if (excludeNull) {
             if (filter != null) {
                 return JSONObject.toJSONString(obj, filter, SerializerFeature.IgnoreNonFieldGetter, SerializerFeature.SortField);
@@ -49,7 +51,8 @@ public class MapperUtils {
             }
         } else {
             if (filter != null) {
-                return JSONObject.toJSONString(obj, filter, SerializerFeature.WriteMapNullValue, SerializerFeature.WriteNullListAsEmpty, SerializerFeature.IgnoreNonFieldGetter, SerializerFeature.SortField);
+                return JSONObject.toJSONString(obj, filter, SerializerFeature.WriteMapNullValue, SerializerFeature.WriteNullListAsEmpty, SerializerFeature.IgnoreNonFieldGetter,
+                        SerializerFeature.SortField);
             } else {
                 return JSONObject.toJSONString(obj, SerializerFeature.WriteMapNullValue, SerializerFeature.WriteNullListAsEmpty, SerializerFeature.IgnoreNonFieldGetter, SerializerFeature.SortField);
             }
@@ -62,6 +65,7 @@ public class MapperUtils {
 
     /**
      * convert object from json value
+     * 
      * @param source
      * @param destination
      */
@@ -75,6 +79,7 @@ public class MapperUtils {
 
     /**
      * convert list object from json value
+     * 
      * @param source
      * @param destination
      */
@@ -88,6 +93,7 @@ public class MapperUtils {
 
     /**
      * convert list object from json value
+     * 
      * @param source
      * @param destination
      */
@@ -96,26 +102,28 @@ public class MapperUtils {
             return null;
         }
 
-        return JSON.parseObject(jsonString, new TypeReference<Map<String, T>>() {});
+        return JSON.parseObject(jsonString, new TypeReference<Map<String, T>>() {
+        });
     }
-    
-    
+
     /**
      * convert bean object to map
+     * 
      * @param source
      * @param destination
      */
     public static <T> Map<String, T> beanToMap(Object object) {
-        if ( object == null) {
+        if (object == null) {
             return null;
         }
-        
+
         String jsonString = toJson(object);
         return toMap(jsonString);
     }
-    
+
     /**
      * 过滤json打印
+     * 
      * @param object
      * @param filters
      * @param features

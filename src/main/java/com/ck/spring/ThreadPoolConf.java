@@ -5,10 +5,10 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
- * Description: 
+ * Description:
  *
  * @author: xieweili
- * @since: 2017年1月5日	
+ * @since: 2017年1月5日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
@@ -16,25 +16,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class ThreadPoolConf {
 
-	// 业务线程初始化值 
+    // 业务线程初始化值
     @Value("${thread.pool.busCorePoolSize}")
-	private int busCorePoolSize;//=10;
+    private int busCorePoolSize;// =10;
 
-	// 业务线程最大值
+    // 业务线程最大值
     @Value("${thread.pool.busMaxPoolSize}")
-	private int busMaxPoolSize;//=30;
+    private int busMaxPoolSize;// =30;
 
-	// 业务线程队列初始值
+    // 业务线程队列初始值
     @Value("${thread.pool.busQueueCapacity}")
-	private int busQueueCapacity;//=30;
+    private int busQueueCapacity;// =30;
 
-	// 异步线程空闲时间
+    // 异步线程空闲时间
     @Value("${thread.pool.busKeepAliveSeconds}")
-	private int busKeepAliveSeconds;//=60;
+    private int busKeepAliveSeconds;// =60;
 
-	// 异步线程名称前缀
+    // 异步线程名称前缀
     @Value("${thread.pool.busThreadNamePrefix}")
-	private String busThreadNamePrefix;//="TaskExecutor-";
+    private String busThreadNamePrefix;// ="TaskExecutor-";
 
     public int getBusCorePoolSize() {
         return busCorePoolSize;
@@ -71,7 +71,7 @@ public class ThreadPoolConf {
     public String getBusThreadNamePrefix() {
         return busThreadNamePrefix;
     }
-    
+
     public void setBusThreadNamePrefix(String busThreadNamePrefix) {
         this.busThreadNamePrefix = busThreadNamePrefix;
     }

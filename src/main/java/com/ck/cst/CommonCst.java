@@ -1,23 +1,23 @@
 package com.ck.cst;
 
 /**
- * Description: 
+ * Description:
  *
  * @author: xieweili
- * @since: 2016年12月31日	
+ * @since: 2016年12月31日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
 public interface CommonCst {
 
-	/**
-	 * 配置文件路径及名称
-	 */
-	String PROPERTIES_PATH_CONFIG = "/config.properties";
-	String PROPERTIES_PATH_SOCKET = "/socket.properties";
-	String PROPERTIES_PATH_CODIS = "/redis.properties";
-	
-	/**
+    /**
+     * 配置文件路径及名称
+     */
+    String PROPERTIES_PATH_CONFIG = "/config.properties";
+    String PROPERTIES_PATH_SOCKET = "/socket.properties";
+    String PROPERTIES_PATH_CODIS = "/redis.properties";
+
+    /**
      * UTF-8
      */
     String CHARSET_UTF8 = "1";
@@ -34,13 +34,12 @@ public interface CommonCst {
      */
     String CHARSET_GB2312 = "3";
     String CHARSET_GB2312_NAME = "GB2312";
-    
+
     /**
      * 事务ID
      */
     String TRANSACTION_ID = "transactionId";
-    
-    
+
     /**
      * response status ok.
      */
@@ -62,12 +61,12 @@ public interface CommonCst {
     String RIGHT_BRACKET = "]";
 
     /**
-     * _. 
+     * _.
      */
     String UNDERLINE = "_";
 
     /**
-     * |. 
+     * |.
      */
     String VERTICAL_LINE = "|";
 
@@ -81,10 +80,10 @@ public interface CommonCst {
     String POUND = "##";
 
     /**
-     *"/".
+     * "/".
      */
     String SLASH = "/";
-    
+
     /**
      * 空值
      */
@@ -94,7 +93,4 @@ public interface CommonCst {
      */
     String STRING_EMPTY_VALUE = "";
 
-	
 }
-
-	

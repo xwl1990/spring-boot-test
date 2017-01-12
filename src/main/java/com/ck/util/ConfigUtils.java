@@ -12,10 +12,10 @@ import org.slf4j.LoggerFactory;
 import com.ck.cst.CommonCst;
 
 /**
- * Description: 
+ * Description:
  *
  * @author: xieweili
- * @since: 2016年12月31日	
+ * @since: 2016年12月31日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
@@ -23,8 +23,9 @@ public class ConfigUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(ConfigUtils.class);
 
-    private ConfigUtils() {}
-    
+    private ConfigUtils() {
+    }
+
     private static volatile Properties PROPERTIES;
 
     public static Properties getProperties() {
@@ -71,18 +72,27 @@ public class ConfigUtils {
     public static Properties loadProperties(String fileName, boolean allowMultiFile) {
         return loadProperties(fileName, allowMultiFile, false);
     }
-   
+
     /**
      * Load properties file to {@link Properties} from class path.
      * 
-     * @param fileName properties file name. for example: <code>dubbo.properties</code>, <code>METE-INF/conf/foo.properties</code>
-     * @param allowMultiFile if <code>false</code>, throw {@link IllegalStateException} when found multi file on the class path.
-     * @param optional is optional. if <code>false</code>, log warn when properties config file not found!s
-     * @return loaded {@link Properties} content. <ul>
-     * <li>return empty Properties if no file found.
-     * <li>merge multi properties file if found multi file
-     * </ul>
-     * @throws IllegalStateException not allow multi-file, but multi-file exsit on class path.
+     * @param fileName
+     *            properties file name. for example:
+     *            <code>dubbo.properties</code>,
+     *            <code>METE-INF/conf/foo.properties</code>
+     * @param allowMultiFile
+     *            if <code>false</code>, throw {@link IllegalStateException}
+     *            when found multi file on the class path.
+     * @param optional
+     *            is optional. if <code>false</code>, log warn when properties
+     *            config file not found!s
+     * @return loaded {@link Properties} content.
+     *         <ul>
+     *         <li>return empty Properties if no file found.
+     *         <li>merge multi properties file if found multi file
+     *         </ul>
+     * @throws IllegalStateException
+     *             not allow multi-file, but multi-file exsit on class path.
      */
     public static Properties loadProperties(String fileName, boolean allowMultiFile, boolean optional) {
         Properties properties = new Properties();
@@ -146,7 +156,8 @@ public class ConfigUtils {
                     } finally {
                         try {
                             input.close();
-                        } catch (Throwable t) {}
+                        } catch (Throwable t) {
+                        }
                     }
                 }
             } catch (Throwable e) {
@@ -156,6 +167,5 @@ public class ConfigUtils {
 
         return properties;
     }
-    
-    
+
 }

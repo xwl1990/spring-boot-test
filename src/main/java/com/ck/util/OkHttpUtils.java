@@ -1,4 +1,3 @@
-
 package com.ck.util;
 
 import java.io.IOException;
@@ -8,7 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,10 +20,10 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 /**
- * Description: 
+ * Description:
  *
  * @author: xieweili
- * @since: 2016年12月30日	
+ * @since: 2016年12月30日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
@@ -51,6 +50,7 @@ public class OkHttpUtils {
 
     /**
      * 初始http get请求参数，参数是以字母从小到大排列
+     * 
      * @param url
      * @param paramMap
      */
@@ -76,6 +76,7 @@ public class OkHttpUtils {
 
     /**
      * 根据key, value组装GET请求URL地扯
+     * 
      * @param key
      * @param value
      * @param httpUrl
@@ -95,6 +96,7 @@ public class OkHttpUtils {
 
     /**
      * 初始http get请求参数
+     * 
      * @param url
      * @param paramMap
      */
@@ -104,6 +106,7 @@ public class OkHttpUtils {
 
     /**
      * 初始http请求参数
+     * 
      * @param url
      * @param paramMap
      */
@@ -114,7 +117,7 @@ public class OkHttpUtils {
         FormEncodingBuilder builder = new FormEncodingBuilder();
         for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
             Object value = entry.getValue();
-            //不能将null数据加入到builder中，否则会报空指针异常
+            // 不能将null数据加入到builder中，否则会报空指针异常
             if (value != null) {
                 if (value instanceof String) {
                     builder.add(entry.getKey(), (String) entry.getValue());
@@ -130,6 +133,7 @@ public class OkHttpUtils {
 
     /**
      * 初始http post请求参数
+     * 
      * @param url
      * @param jsonString
      * @return
@@ -141,6 +145,7 @@ public class OkHttpUtils {
 
     /**
      * 初始http post请求参数
+     * 
      * @param url
      * @param paramMap
      * @return
@@ -152,6 +157,7 @@ public class OkHttpUtils {
 
     /**
      * 初始http put请求参数
+     * 
      * @param url
      * @param jsonString
      * @return
@@ -163,6 +169,7 @@ public class OkHttpUtils {
 
     /**
      * 初始http put请求参数
+     * 
      * @param url
      * @param paramMap
      * @return
@@ -211,12 +218,14 @@ public class OkHttpUtils {
 
     /**
      * http get方式请求，并返回String响应报文
-    * @param url
-    * @param paramMap
-    * @param timeout 单位：秒
-    * @return
-    * @throws Exception
-    */
+     * 
+     * @param url
+     * @param paramMap
+     * @param timeout
+     *            单位：秒
+     * @return
+     * @throws Exception
+     */
     public static String httpClientGetReturnAsString(String url, Map<String, Object> paramMap, int timeout) throws Exception {
         Request request = buildGetUrlEndConnetorParam(url, paramMap);
         Object object = newHttpClient(request, TEXT_TYPE, timeout);
@@ -225,6 +234,7 @@ public class OkHttpUtils {
 
     /**
      * http get方式请求，并返回Map响应报文
+     * 
      * @param url
      * @param paramMap
      * @param timeout
@@ -239,7 +249,8 @@ public class OkHttpUtils {
     }
 
     /**
-     * 同步的Post请求 
+     * 同步的Post请求
+     * 
      * @param url
      * @param jsonString
      * @param timeout
@@ -256,9 +267,11 @@ public class OkHttpUtils {
 
     /**
      * http post方式请求，并返回Map响应报文
+     * 
      * @param url
      * @param jsonString
-     * @param timeout 单位：秒
+     * @param timeout
+     *            单位：秒
      * @return
      */
     public static String httpClientJsonPostReturnAsString(String url, String jsonString, int timeout) throws Exception {
@@ -268,9 +281,11 @@ public class OkHttpUtils {
 
     /**
      * http post方式请求，并返回Map响应报文
+     * 
      * @param url
      * @param paramMap
-     * @param timeout 单位：秒
+     * @param timeout
+     *            单位：秒
      * @return
      */
     @SuppressWarnings("unchecked")
@@ -282,9 +297,11 @@ public class OkHttpUtils {
 
     /**
      * http post方式请求，并返回Map响应报文
+     * 
      * @param url
      * @param paramMap
-     * @param timeout 单位：秒
+     * @param timeout
+     *            单位：秒
      * @return
      */
     public static String httpClientJsonPostReturnAsString(String url, Map<String, Object> paramMap, int timeout) throws Exception {
@@ -294,9 +311,11 @@ public class OkHttpUtils {
 
     /**
      * http put方式请求，并返回Map响应报文
+     * 
      * @param url
      * @param jsonString
-     * @param timeout 单位：秒
+     * @param timeout
+     *            单位：秒
      * @return
      */
     public static String httpClientJsonPutReturnAsString(String url, String jsonString, int timeout) throws Exception {
@@ -306,6 +325,7 @@ public class OkHttpUtils {
 
     /**
      * http put方式请求，并返回String响应报文
+     * 
      * @param url
      * @param paramMap
      * @return
@@ -319,9 +339,11 @@ public class OkHttpUtils {
 
     /**
      * http post方式请求，并返回String响应报文
+     * 
      * @param url
      * @param paramMap
-     * @param timeout 单位：秒
+     * @param timeout
+     *            单位：秒
      * @return
      */
     public static String httpClientPostReturnJson(String url, Map<String, Object> paramMap, int timeout) throws Exception {
@@ -332,9 +354,11 @@ public class OkHttpUtils {
 
     /**
      * http post方式提交form请求，并返回map响应报文
+     * 
      * @param url
      * @param paramMap
-     * @param timeout 单位：秒
+     * @param timeout
+     *            单位：秒
      * @return
      */
     @SuppressWarnings("unchecked")
@@ -364,6 +388,7 @@ public class OkHttpUtils {
 
     /**
      * 初始http post请求xml参数
+     * 
      * @param url
      * @param xmlString
      * @return
@@ -380,8 +405,7 @@ public class OkHttpUtils {
     @SuppressWarnings("unchecked")
     public static void main(String[] args) {
 
-        String json =
-                "{\"mccGroup\":\"05\",\"mchtNo\":\"001310156990001\",\"mchtSource\":\"3\",\"mchtKind\":\"B2\",\"settleCycle\":\"1\",\"cardType\":\"\",\"transAmt\":\"300\",\"cardNo\":\"\",\"auditStatus\":\"0\",\"transType\":\"31\",\"orderNo\":\"99436508735598326459\",\"brhNo\":\"002\",\"paymentMethod\":\"4\",\"boxSn\":\"\"}";
+        String json = "{\"mccGroup\":\"05\",\"mchtNo\":\"001310156990001\",\"mchtSource\":\"3\",\"mchtKind\":\"B2\",\"settleCycle\":\"1\",\"cardType\":\"\",\"transAmt\":\"300\",\"cardNo\":\"\",\"auditStatus\":\"0\",\"transType\":\"31\",\"orderNo\":\"99436508735598326459\",\"brhNo\":\"002\",\"paymentMethod\":\"4\",\"boxSn\":\"\"}";
         Map<String, Object> map = MapperUtils.map(json, Map.class);
         try {
             Map<String, Object> ret = httpClientPostFormReturnMap("http://1172.30.0.129:18080/fspf-rcmms/service/riskControlCheck.htm", map, 10);

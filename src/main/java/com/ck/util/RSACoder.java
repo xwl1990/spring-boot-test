@@ -1,4 +1,3 @@
-
 package com.ck.util;
 
 import java.io.IOException;
@@ -21,7 +20,7 @@ import javax.crypto.Cipher;
  * RSA 加解密
  * 
  * @author: wangyanhui
- * @since: 2015/07/21   
+ * @since: 2015/07/21
  */
 public class RSACoder {
 
@@ -241,16 +240,16 @@ public class RSACoder {
          * EncodeUtil.bytesToHexString(pub); System.out.println(pubKey);
          */
 
-        //		String data = "1234567890AVBCDS";
-        //		byte[] result = encryptByPrivateKey(data.getBytes(), EncodeUtil
-        //				.hexStringToByte(Constants.RSAPRIKEY));
+        // String data = "1234567890AVBCDS";
+        // byte[] result = encryptByPrivateKey(data.getBytes(), EncodeUtil
+        // .hexStringToByte(Constants.RSAPRIKEY));
         //
-        //		byte[] deRe = decryptByPublicKey(result, EncodeUtil
-        //				.hexStringToByte(Constants.RSAPUBKEY));
+        // byte[] deRe = decryptByPublicKey(result, EncodeUtil
+        // .hexStringToByte(Constants.RSAPUBKEY));
         //
-        //		System.out.println(EncodeUtil.bytesToHexString(result));
-        //		System.out.println("-------");
-        //		System.out.println(new String(deRe, "UTF-8"));
+        // System.out.println(EncodeUtil.bytesToHexString(result));
+        // System.out.println("-------");
+        // System.out.println(new String(deRe, "UTF-8"));
         // 生成之后，采用不同的方式来转换成16进制字符串
         // iphone生成方式
         /*
@@ -267,11 +266,11 @@ public class RSACoder {
          * ()));
          */
 
-        //		Map keyMap = initKey();
-        //		RSAPublicKey publicKey = (RSAPublicKey) keyMap.get(PUBLIC_KEY);
-        //		RSAPrivateKey privateKey = (RSAPrivateKey) keyMap.get(PRIVATE_KEY);
-        //		System.out.println("public:"+EncodeUtil.bytesToHexString(publicKey.getEncoded()));
-        //		System.out.println("private:"+EncodeUtil.bytesToHexString(privateKey.getEncoded()));
+        // Map keyMap = initKey();
+        // RSAPublicKey publicKey = (RSAPublicKey) keyMap.get(PUBLIC_KEY);
+        // RSAPrivateKey privateKey = (RSAPrivateKey) keyMap.get(PRIVATE_KEY);
+        // System.out.println("public:"+EncodeUtil.bytesToHexString(publicKey.getEncoded()));
+        // System.out.println("private:"+EncodeUtil.bytesToHexString(privateKey.getEncoded()));
     }
 
 }

@@ -11,13 +11,12 @@ import org.slf4j.LoggerFactory;
 import sun.misc.BASE64Decoder;
 
 /**
- * 提供各种加密解密的算法工具
- * The class CryptUtils.
+ * 提供各种加密解密的算法工具 The class CryptUtils.
  *
- * Description: 
+ * Description:
  *
  * @author: xieweili
- * @since: 2017年1月10日	
+ * @since: 2017年1月10日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
@@ -76,8 +75,6 @@ public class CryptUtils {
         // 将字节数组转换为String并返回
         return EncodeUtils.bytesToHexString(digesta);
     }
-
- 
 
     /**
      * 对字符串进行3DES加密方法
@@ -145,7 +142,7 @@ public class CryptUtils {
 
     public static void main(String[] args) {
         System.out.print(CryptUtils.encryptToMD5(("123456QWasHuLQ").getBytes()));
-        //A1DC825387A574774551563AF2590C2A
+        // A1DC825387A574774551563AF2590C2A
     }
 
 }

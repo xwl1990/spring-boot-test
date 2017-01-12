@@ -1,4 +1,3 @@
-
 package com.ck.util;
 
 import java.sql.Timestamp;
@@ -8,7 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 public class TimeUtils {
 
@@ -57,7 +56,7 @@ public class TimeUtils {
     public static final String DATE_FORMAT_8 = "yyyyMMdd";
 
     /**
-     * M月d日  HH:mm
+     * M月d日 HH:mm
      */
     public static final String DATE_FORMAT_9 = "M月d日  HH:mm";
 
@@ -100,25 +99,25 @@ public class TimeUtils {
         return dateToString(new Date(), DATE_FORMAT_14);
     }
 
-    /** 
-     * 返回当前时间字符串。 
-     * <p> 
-     * 格式：yyyy-MM-dd HH:mm:ss 
-     *  
-     * @return String 指定格式的日期字符串. 
+    /**
+     * 返回当前时间字符串。
+     * <p>
+     * 格式：yyyy-MM-dd HH:mm:ss
+     * 
+     * @return String 指定格式的日期字符串.
      */
     public static String getCurrentTime() {
         return dateToString(new Date(), DATE_FORMAT_1);
     }
 
-    /** 
-     * 根据给定的格式，返回时间字符串。 
-     * <p> 
-     * 格式参照类描绘中说明. 
-     *  
-     * @param format 
-     *            日期格式字符串 
-     * @return String 指定格式的日期字符串. 
+    /**
+     * 根据给定的格式，返回时间字符串。
+     * <p>
+     * 格式参照类描绘中说明.
+     * 
+     * @param format
+     *            日期格式字符串
+     * @return String 指定格式的日期字符串.
      */
     public static String getFormatCurrentTime(String format) {
         return dateToString(new Date(), format);
@@ -224,8 +223,8 @@ public class TimeUtils {
     }
 
     /**
-     * toString for format 1
-     * yyyy-MM-dd HH:mm:ss
+     * toString for format 1 yyyy-MM-dd HH:mm:ss
+     * 
      * @param date
      * @return
      */
@@ -235,8 +234,8 @@ public class TimeUtils {
     }
 
     /**
-     * toString for format 2
-     * yyyy-MM-dd
+     * toString for format 2 yyyy-MM-dd
+     * 
      * @param date
      * @return
      */
@@ -246,8 +245,8 @@ public class TimeUtils {
     }
 
     /**
-     * toString for format 4
-     * yyyyMMddHHmmss
+     * toString for format 4 yyyyMMddHHmmss
+     * 
      * @param date
      * @return
      */
@@ -258,6 +257,7 @@ public class TimeUtils {
 
     /**
      * yyyy年MM月dd日 HH:mm
+     * 
      * @param date
      * @return
      */
@@ -267,6 +267,7 @@ public class TimeUtils {
 
     /**
      * MM月dd日
+     * 
      * @param date
      * @return
      */
@@ -275,8 +276,8 @@ public class TimeUtils {
     }
 
     /**
-     * toString for format 7
-     * yyyy-MM
+     * toString for format 7 yyyy-MM
+     * 
      * @param date
      * @return
      */
@@ -286,8 +287,8 @@ public class TimeUtils {
     }
 
     /**
-     * toString for format 8
-     * yyyyMMdd
+     * toString for format 8 yyyyMMdd
+     * 
      * @param date
      * @return
      */
@@ -297,8 +298,8 @@ public class TimeUtils {
     }
 
     /**
-     * toString for format 9
-     * M月d日 HH:mm
+     * toString for format 9 M月d日 HH:mm
+     * 
      * @param date
      * @return
      */
@@ -308,8 +309,8 @@ public class TimeUtils {
     }
 
     /**
-     * toString for format 10
-     * yyyy年M月d日 HH时mm分ss秒
+     * toString for format 10 yyyy年M月d日 HH时mm分ss秒
+     * 
      * @param date
      * @return
      */
@@ -321,11 +322,13 @@ public class TimeUtils {
     /**
      * toString for format 6.<br>
      * <b>yyyy-MM-dd HH:mm</b>
+     * 
      * @param date
      * @return
      */
     public static String toStringFormat_12(Date date) {
-        if (date == null) return "";
+        if (date == null)
+            return "";
         return dateToString(date, DATE_FORMAT_12);
     }
 
@@ -391,7 +394,8 @@ public class TimeUtils {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         simpleDateFormat.applyPattern(pattern);
         String str = null;
-        if (date == null) return null;
+        if (date == null)
+            return null;
         str = simpleDateFormat.format(date);
         return str;
     }
@@ -496,6 +500,7 @@ public class TimeUtils {
 
     /**
      * 比较当前时间是否在活动范围内
+     * 
      * @param startDate
      * @param endDate
      * @return
@@ -531,8 +536,11 @@ public class TimeUtils {
 
     /**
      * 比较两个HH：mm:ss时间的大小
-     * @param HH：mm:ss
-     * @param HH：mm:ss
+     * 
+     * @param HH
+     *            ：mm:ss
+     * @param HH
+     *            ：mm:ss
      * @return
      */
     public static boolean comepareTime(String time1, String time2) {
@@ -542,23 +550,24 @@ public class TimeUtils {
     }
 
     /**
-      * 取前一天的日期.
-      * 
-      * @param dt
-      * @param amount
-      * @return
-      */
+     * 取前一天的日期.
+     * 
+     * @param dt
+     * @param amount
+     * @return
+     */
     public static Date beforeDate(Date dt) {
 
-        Calendar calendar = Calendar.getInstance(); //得到日历
-        calendar.setTime(dt);//把当前时间赋给日历
-        calendar.add(Calendar.DAY_OF_MONTH, -1); //设置为前一天
-        return calendar.getTime(); //得到前一天的时间
+        Calendar calendar = Calendar.getInstance(); // 得到日历
+        calendar.setTime(dt);// 把当前时间赋给日历
+        calendar.add(Calendar.DAY_OF_MONTH, -1); // 设置为前一天
+        return calendar.getTime(); // 得到前一天的时间
 
     }
 
     /**
      * 后期某个日期的下一天的日期
+     * 
      * @param txDate
      * @return
      */
@@ -580,8 +589,8 @@ public class TimeUtils {
      */
     public static Date newDatePlusHours(Date dt, int hours) {
 
-        Calendar calendar = Calendar.getInstance(); //得到日历
-        calendar.setTime(dt);//把当前时间赋给日历
+        Calendar calendar = Calendar.getInstance(); // 得到日历
+        calendar.setTime(dt);// 把当前时间赋给日历
         calendar.add(Calendar.HOUR_OF_DAY, hours);
         return calendar.getTime();
 
@@ -596,8 +605,8 @@ public class TimeUtils {
      */
     public static Date datePlusSeconds(Date dt, int secondes) {
 
-        Calendar calendar = Calendar.getInstance(); //得到日历
-        calendar.setTime(dt);//把当前时间赋给日历
+        Calendar calendar = Calendar.getInstance(); // 得到日历
+        calendar.setTime(dt);// 把当前时间赋给日历
         calendar.add(Calendar.SECOND, secondes);
         return calendar.getTime();
 

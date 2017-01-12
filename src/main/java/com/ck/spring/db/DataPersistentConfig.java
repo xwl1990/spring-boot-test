@@ -16,10 +16,10 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * Description: 
+ * Description:
  *
  * @author: xieweili
- * @since: 2017年1月5日	
+ * @since: 2017年1月5日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement(proxyTargetClass = false)
 @Order(3)
 public class DataPersistentConfig {
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(DataPersistentConfig.class);
 
     @Resource(name = "dataSource")
@@ -44,7 +44,7 @@ public class DataPersistentConfig {
         return bean;
     }
 
-    @Bean(name = { "transactionManager", "openplfm"})
+    @Bean(name = { "transactionManager", "openplfm" })
     public DataSourceTransactionManager dataSourceTransactionManager() {
         LOG.info("init openplfm transaction");
         DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();

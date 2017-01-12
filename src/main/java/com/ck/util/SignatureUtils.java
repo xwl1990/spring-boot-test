@@ -10,7 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author <a href="falchion123@gmail.com">liuzhonghui</a>
+ * Description:
+ *
+ * @author: xieweili
+ * @since: 2017年1月12日
+ * @version: $Revision$ $Date$ $LastChangedBy$
+ *
  */
 public class SignatureUtils {
 
@@ -57,13 +62,13 @@ public class SignatureUtils {
      */
     public static String sign(String source, String signType, String key) {
         String data = "";
-        //LOG.info("source is {},key is {}", source, key);
+        // LOG.info("source is {},key is {}", source, key);
         try {
 
             String charset = "UTF-8";
             if (signType.equalsIgnoreCase(SIGNATURE_MD5)) {
                 String src = source + key;
-                System.out.println("\nsginData:\n"+src+"\n");
+                System.out.println("\nsginData:\n" + src + "\n");
                 data = CryptUtils.encryptToMD5(src.getBytes(charset));
 
             } else if (signType.equalsIgnoreCase(SIGNATURE_RSA)) {
@@ -74,12 +79,6 @@ public class SignatureUtils {
             LOG.error("Error when signature, errmsg: ", e);
         }
         return data;
-    }
-
-    public static void main(String[] args) {
-        String a =
-                "appid=wx92f6dbb646e17dc5&bank_type=CFT&cash_fee=1&fee_type=CNY&is_subscribe=Y&mch_id=10012102&nonce_str=5GDXmx2jVhVMOWgr&openid=owqpSuHS_ok6llDWfSF8ClKYzxb4&out_trade_no=99186385036098481459&result_code=SUCCESS&return_code=SUCCESS&return_msg=OK&sub_mch_id=1241309202&time_end=20160219162200&total_fee=1&trade_state=SUCCESS&trade_type=MICROPAY&transaction_id=1000700454201602193383647094";
-        System.out.println(sign(a, "MD5", "&key=5b3e1d34893ce4be665bdd1821743d5d"));
     }
 
     /**
@@ -94,7 +93,7 @@ public class SignatureUtils {
         boolean ret = false;
 
         String data = null;
-        String charset ="UTF-8";
+        String charset = "UTF-8";
         try {
             if (signType.equalsIgnoreCase(SIGNATURE_MD5)) {
                 String src = source + key;
@@ -104,7 +103,7 @@ public class SignatureUtils {
                     ret = true;
                 }
             } else if (signType.equalsIgnoreCase(SIGNATURE_RSA)) {
-                
+
             }
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("Error when verify msg, errmsg: " + e.getMessage(), e);

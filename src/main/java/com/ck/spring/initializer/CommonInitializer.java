@@ -11,26 +11,26 @@ import org.springframework.web.WebApplicationInitializer;
 import ch.qos.logback.ext.spring.web.LogbackConfigListener;
 
 /**
- * Description: 
+ * Description:
  *
  * @author: xieweili
- * @since: 2017年1月5日	
+ * @since: 2017年1月5日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
 @Order(1)
 public class CommonInitializer implements WebApplicationInitializer {
-    
-    public CommonInitializer(){
+
+    public CommonInitializer() {
         System.out.println("CommonInitializer");
     }
 
     private static final Logger LOG = LoggerFactory.getLogger(CommonInitializer.class);
-    
+
     @Override
     public void onStartup(ServletContext sc) throws ServletException {
         sc.setInitParameter("logbackConfigLocation", "logback.xml");
-        sc.addListener(LogbackConfigListener.class);        
+        sc.addListener(LogbackConfigListener.class);
         LOG.info("Dynamic loading web.xml end.");
     }
 

@@ -1,11 +1,10 @@
 package com.ck.model;
 
-
 /**
  * Description: 被扫撤销订单响应参数
  *
  * @author: xieweili
- * @since: 2016年12月31日	
+ * @since: 2016年12月31日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */

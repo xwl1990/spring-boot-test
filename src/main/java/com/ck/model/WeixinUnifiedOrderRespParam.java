@@ -1,18 +1,17 @@
 package com.ck.model;
 
 /**
- * 统一下单响应参数
- * Description: 
+ * 统一下单响应参数 Description:
  *
  * @author: xieweili
- * @since: 2017年1月10日	
+ * @since: 2017年1月10日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
 public class WeixinUnifiedOrderRespParam extends WeixinBaseRespParam {
 
     /**
-     * 交易类型  JSAPI、NATIVE、APP
+     * 交易类型 JSAPI、NATIVE、APP
      */
     private String trade_type;
 

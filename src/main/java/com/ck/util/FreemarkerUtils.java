@@ -1,4 +1,3 @@
-
 package com.ck.util;
 
 import java.io.StringWriter;
@@ -13,10 +12,10 @@ import freemarker.template.Template;
  * 
  * The class FreemarkerUtils.
  *
- * Description: 
+ * Description:
  *
  * @author: xieweili
- * @since: 2016年12月28日	
+ * @since: 2016年12月28日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
@@ -59,5 +58,3 @@ public class FreemarkerUtils {
         cfg.clearTemplateCache();
     }
 }
-
-	

@@ -1,0 +1,3 @@
+ccKey=com.ck.dubbo.filter.ClientContextFilter
+clientLogFilter=com.ck.dubbo.filter.ClientLogFilter
+serviceLogFilter=com.ck.dubbo.filter.InterfaceLogFilter

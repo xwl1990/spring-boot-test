@@ -1,4 +1,3 @@
-
 package com.ck.util;
 
 import javax.crypto.Cipher;
@@ -11,13 +10,14 @@ public class DesCoder {
      * 单位长
      */
     private static final int UNIT_LENGTH = 8;
-    
+
     public final static String KEY_ALGORITHM = "DESede";
 
     public final static String CHIPER_ALGORITHM = "DESede/ECB/NoPadding";
 
     /**
      * 加密
+     * 
      * @param msg
      * @param key
      * @return
@@ -38,6 +38,7 @@ public class DesCoder {
 
     /**
      * 解密
+     * 
      * @param msg
      * @param key
      * @return
@@ -58,6 +59,7 @@ public class DesCoder {
 
     /**
      * 得到3Deskey
+     * 
      * @param key
      * @return
      */
@@ -73,6 +75,7 @@ public class DesCoder {
 
     /**
      * 补位操作
+     * 
      * @param srcBytes
      * @return
      */
@@ -103,6 +106,7 @@ public class DesCoder {
 
     /**
      * 移位操作
+     * 
      * @param srcBytes
      * @return
      */
@@ -132,6 +136,7 @@ public class DesCoder {
 
     /**
      * 离散密钥
+     * 
      * @param random
      * @param key
      * @return
@@ -156,9 +161,8 @@ public class DesCoder {
     }
 
     /**
-     * 3DES解密
-     * 先使用 key 对random进行离散，得出真正的用于解密的密钥
-     * 再使用得到的会话密钥 进行解密
+     * 3DES解密 先使用 key 对random进行离散，得出真正的用于解密的密钥 再使用得到的会话密钥 进行解密
+     * 
      * @param random
      * @param key
      * @param data
@@ -168,39 +172,42 @@ public class DesCoder {
         byte[] keyb = disperse(random, key);
         return decrypt(data, keyb);
     }
-    
+
     /**
      * 初始数据
+     * 
      * @param srcBytes
      * @return
      */
-    public static byte[] initData(byte[] srcBytes){
-        byte[] initBytes = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    public static byte[] initData(byte[] srcBytes) {
+        byte[] initBytes = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
         int len = srcBytes.length;
-        byte[] destBytes = new byte[len+8];
+        byte[] destBytes = new byte[len + 8];
         System.arraycopy(initBytes, 0, destBytes, 0, 8);
         System.arraycopy(srcBytes, 0, destBytes, 8, len);
         return destBytes;
     }
-    
+
     /**
      * 初始数据和补位操作
+     * 
      * @param srcBytes
      * @return
      */
-    public static byte[] initAndFillGap(byte[] srcBytes){
+    public static byte[] initAndFillGap(byte[] srcBytes) {
         return fillGap(initData(srcBytes));
     }
-    
+
     public static byte[] subByte(byte b[], int start, int end) {
         int sublength = end - start;
         byte[] result = new byte[sublength];
         System.arraycopy(b, start, result, 0, sublength);
         return result;
     }
-    
+
     /**
      * 8个字节做异或
+     * 
      * @param b1
      * @param b2
      * @return
@@ -214,41 +221,45 @@ public class DesCoder {
         }
 
         for (int i = 0; i < b1.length; i++) {
-            result[i] = (byte) (b1[i] ^ b2[i]);;
+            result[i] = (byte) (b1[i] ^ b2[i]);
+            ;
         }
 
         return result;
     }
-    
+
     /**
      * MAC签名计算
-     * @param msg  签名数据
-     * @param mac  长度是8位或者16位
+     * 
+     * @param msg
+     *            签名数据
+     * @param mac
+     *            长度是8位或者16位
      * @return
      */
-    public static byte[] iboxMac(byte[] msg ,byte[] mac ){
-        if( null == msg || null == mac ){
+    public static byte[] iboxMac(byte[] msg, byte[] mac) {
+        if (null == msg || null == mac) {
             throw new NullPointerException("Msg or Mac is null value.");
         }
         int len = mac.length;
-        if( len%8!=0||len>16||len<=0) {
+        if (len % 8 != 0 || len > 16 || len <= 0) {
             throw new IllegalArgumentException("Length of mac is ilegeal, expected length is 8 or 16 bytes.");
         }
-        
+
         byte[] msg_whole = initAndFillGap(msg);
         int unit_number = msg_whole.length / UNIT_LENGTH;
-        //每8个字节做异或
+        // 每8个字节做异或
         byte[] xorResult = subByte(msg_whole, 0, 8);
         for (int i = 1; i < unit_number; i++) {
             int start = i * UNIT_LENGTH;
             int end = start + UNIT_LENGTH;
             byte[] unit = subByte(msg_whole, start, end);
             xorResult = doXor(xorResult, unit);
-            xorResult = encrypt(xorResult,subByte(mac, 0, 8));
+            xorResult = encrypt(xorResult, subByte(mac, 0, 8));
         }
-        if(len == 16){
+        if (len == 16) {
             xorResult = decrypt(xorResult, subByte(mac, 8, 16));
-            xorResult = encrypt(xorResult,subByte(mac, 0, 8));
+            xorResult = encrypt(xorResult, subByte(mac, 0, 8));
         }
         return xorResult;
     }

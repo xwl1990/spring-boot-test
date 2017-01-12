@@ -1,11 +1,10 @@
 package com.ck.model;
 
 /**
- * 短链接响应参数
- * Description: 
+ * 短链接响应参数 Description:
  *
  * @author: xieweili
- * @since: 2017年1月10日	
+ * @since: 2017年1月10日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */

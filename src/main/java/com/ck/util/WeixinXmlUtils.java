@@ -15,13 +15,11 @@ import com.ck.model.WeixinQueryStatusRespParam;
 import com.ck.model.WeixinShortUrlRespParam;
 import com.ck.model.WeixinUnifiedOrderRespParam;
 
-
-
 /**
- * Description: 解析微信接口返回文本 
+ * Description: 解析微信接口返回文本
  *
  * @author: xieweili
- * @since: 2016年12月31日	
+ * @since: 2016年12月31日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
@@ -29,13 +27,14 @@ public class WeixinXmlUtils {
 
     /**
      * 将对象转化成XML
+     * 
      * @param map
      * @return
      */
     public static String convertMapToXML(Map<String, Object> map) {
-        //得到document对
+        // 得到document对
         Document document = DocumentHelper.createDocument();
-        //添加根节点
+        // 添加根节点
         Element root = document.addElement("xml");
 
         Element e = null;
@@ -89,6 +88,7 @@ public class WeixinXmlUtils {
 
     /**
      * 解析统一支付接口返回文本
+     * 
      * @param xmlStr
      * @return
      */
@@ -107,6 +107,7 @@ public class WeixinXmlUtils {
 
     /**
      * 解析收单状态查询接口返回文本
+     * 
      * @param xmlStr
      * @return
      */
@@ -137,6 +138,7 @@ public class WeixinXmlUtils {
 
     /**
      * 解析收单状态查询接口返回文本
+     * 
      * @param xmlStr
      * @return
      */
@@ -151,6 +153,7 @@ public class WeixinXmlUtils {
 
     /**
      * 解析收单状态查询接口返回文本
+     * 
      * @param xmlStr
      * @return
      */
@@ -167,6 +170,7 @@ public class WeixinXmlUtils {
 
     /**
      * 解析通用返回属性
+     * 
      * @param param
      * @param p
      */
@@ -186,6 +190,7 @@ public class WeixinXmlUtils {
 
     /**
      * 解析统一支付接口返回文本
+     * 
      * @param xmlStr
      * @return
      */

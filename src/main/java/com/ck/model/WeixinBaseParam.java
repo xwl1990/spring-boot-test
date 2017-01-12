@@ -4,7 +4,7 @@ package com.ck.model;
  * Description: 微信收单处理请求参数
  *
  * @author: xieweili
- * @since: 2016年12月31日	
+ * @since: 2016年12月31日
  * @version: $Revision$ $Date$ $LastChangedBy$
  *
  */
@@ -39,38 +39,32 @@ public class WeixinBaseParam {
      * 签名
      */
     private String sign;
-    
+
     private String body;
-    
+
     private String device_info;
-    
+
     private String out_trade_no;
-    
+
     private String total_fee;
-    
+
     private String notify_url;
-    
+
     private String sign_type;
-    
+
     private String spbill_create_ip;
-    
+
     public String getTotal_fee() {
         return total_fee;
     }
-    
-    
 
     public String getSign_type() {
         return sign_type;
     }
 
-
-
     public void setSign_type(String sign_type) {
         this.sign_type = sign_type;
     }
-
-
 
     public void setTotal_fee(String total_fee) {
         this.total_fee = total_fee;
