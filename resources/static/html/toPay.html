@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<title>Wechat Pay</title>
+
+<script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/toPay.js"></script>
+<style>
+body {
+	text-align: center
+}
+</style>
+</head>
+<body>
+    <p>
+    <label id="titleName">--</label>
+    </p>
+    <p>
+	<input type="text" name="money" id="money" style="width:200px; height:20px;" />
+	</p>
+	<input type="button" id="commit" value=" Confirm Pay " style="width:200px; height:20px;" />
+</body>
+
+</html>

@@ -28,21 +28,20 @@ public class WechatPayUtil {
      */
     public static WeixinMicroReverseRespParam unifiedorder(WeixinUnifiedOrderRespParam p) throws Exception {
         p.setAppid(WechatPayCst.APP_ID);
-        p.setBody("1");
+        p.setBody("订单");
         p.setMch_id(WechatPayCst.MCHT_ID);
+        String no = StringTool.getOrderID();
+        p.setOut_trade_no(no);
+        p.setNonce_str(no);
+        p.setSpbill_create_ip("12.12.12.12");
         p.setSign_type("MD5");
         p.setNotify_url("http://www.baiduc.om");
-        // p.setDevice_info("WEB");
-        p.setTrade_type("NATIVE");//
-        // p.setSign(createSgin(p));
+        p.setTrade_type("NATIVE");
         String data = WeixinXmlUtils.convertMapToXML(signAndConvertToMap(p, WechatPayCst.APP_KEY));
-        // FreemarkerUtils.getContentByFileName("wechat_pay.ftl",
-        // MapperUtils.beanToMap(p));
-        System.out.println(data);
-        data = OkHttpUtils.httpClientJsonPostReturnAsString(WechatPayCst.WECHAT_PAY_UNIFIEDORDER_URL, data, WechatPayCst.WECHAT_TIMEOUT);
-        System.out.println("\r");
-        System.out.println(data);
-        return WeixinXmlUtils.parseReverse(data);
+        System.out.println("request:"+data);
+        String r = OkHttpUtils.httpClientJsonPostReturnAsString(WechatPayCst.WECHAT_PAY_UNIFIEDORDER_URL, data, WechatPayCst.WECHAT_TIMEOUT);
+        System.out.println("result:"+r);
+        return WeixinXmlUtils.parseReverse(r);
     }
 
     /***

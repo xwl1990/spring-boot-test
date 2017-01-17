@@ -285,7 +285,7 @@
     </logger>
     <!-- flume end -->
 
-    <logger name="com.alibaba.druid" additivity="false" level="ERROR">
+    <logger name="com.alibaba.druid" additivity="false" level="INFO">
         <appender-ref ref="Druid" />
         <appender-ref ref="stdout"></appender-ref>
     </logger>
@@ -301,8 +301,9 @@
     <logger name="org.dozer" additivity="false" level="ERROR">
         <appender-ref ref="other" />
     </logger>
-    <logger name="org.mybatis" additivity="false" level="ERROR">
+    <logger name="org.mybatis" additivity="false" level="INFO">
         <appender-ref ref="other" />
+         <appender-ref ref="Druid" />
         <appender-ref ref="stdout"></appender-ref>
     </logger>
     <logger name="com.alibaba.dubbo" additivity="false" level="ERROR">

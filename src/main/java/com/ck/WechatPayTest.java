@@ -98,8 +98,8 @@ public class WechatPayTest {
     }
     
     public static void main(String[] args) throws Exception {
-       // WechatPayTest t = new WechatPayTest();
-        //t.initNativePayData();
+        WechatPayTest t = new WechatPayTest();
+        System.out.println(MapperUtils.toJson(t.initNativePayData()));
     }
     
     public static SortedMap<String, String> initNativePayData2() throws Exception {
