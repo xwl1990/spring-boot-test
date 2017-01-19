@@ -1,10 +1,10 @@
 package com.ck.dubbo.api;
 
-import com.ck.common.GenericResponseDto;
+import com.alibaba.fastjson.JSONObject;
 
 public interface UserInfoApi {
 
-    public GenericResponseDto getUser(String userId); 
+    public JSONObject getUser(String userId); 
     
 }
 

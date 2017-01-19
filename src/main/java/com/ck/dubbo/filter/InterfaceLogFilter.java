@@ -20,6 +20,7 @@ import com.alibaba.dubbo.rpc.Result;
 import com.alibaba.dubbo.rpc.RpcException;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.ck.cst.CommonCst;
+import com.ck.cst.SysCst;
 import com.ck.dubbo.cst.DubboCst;
 import com.ck.dubbo.cst.SpecificSymbolCst;
 import com.ck.dubbo.util.DubboUtil;
@@ -38,7 +39,7 @@ import com.ck.util.MapperUtils;
 @Activate(group = Constants.PROVIDER, value = DubboCst.PROVIDE_INTERFACE_LOG_KEY)
 public class InterfaceLogFilter implements Filter {
 
-    private static final Logger logger = LoggerFactory.getLogger(InterfaceLogFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(SysCst.COM_INTERFACE);
 
     private static final ConcurrentMap<String, Logger> LOGGERS = new ConcurrentHashMap<String, Logger>();
 
@@ -64,9 +65,11 @@ public class InterfaceLogFilter implements Filter {
             }
             String msg = sn.toString();
                 LoggerFactory.getLogger(INTERFACE_LOG_KEY + "." + invoker.getInterface().getName()).info(msg);
+                logger.info(msg);
             result = invoker.invoke(inv);
 
                 String text = "[response] - " + MapperUtils.toJson(result.getValue());
+                logger.info(text);
                 getLogger(INTERFACE_LOG_KEY + "." + invoker.getInterface().getName()).info(text);
         } catch (Throwable t) {
             logger.warn("Exception in InterfaceLogFilter of service(" + invoker + " -> " + inv + ")", t);

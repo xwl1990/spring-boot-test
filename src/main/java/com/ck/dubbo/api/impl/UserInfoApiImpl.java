@@ -10,10 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
-import com.ck.common.GenericResponseDto;
+import com.alibaba.fastjson.JSONObject;
 import com.ck.dubbo.api.UserInfoApi;
 import com.ck.svc.UserSvc;
-import com.ck.util.RespdUtils;
 
 @Service("userInfoApi")
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
@@ -26,9 +25,9 @@ public class UserInfoApiImpl implements UserInfoApi{
     @Override
     @POST
     @Path("getUser")
-    public GenericResponseDto getUser(String userId) {
-        GenericResponseDto resp = RespdUtils.success();
-        resp.putData("user", userSvc.queryUserList());
+    public JSONObject getUser(String userId) {
+        JSONObject resp = new JSONObject();
+        resp.put("user11", userSvc.queryUserList());
         return resp;
     }
 
