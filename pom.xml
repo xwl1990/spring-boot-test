@@ -48,11 +48,6 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-		<dependency>
-		  <groupId>org.springframework</groupId>
-		  <artifactId>spring-tx</artifactId>
-		</dependency>
-		
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
@@ -147,6 +142,18 @@
 		  <groupId>com.alibaba</groupId>
 		  <artifactId>fastjson</artifactId>
 		  <version>1.2.22</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>com.alibaba</groupId>
+		  <artifactId>alipay-sdk</artifactId>
+		  <version>20160801120057</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>com.alipay</groupId>
+		  <artifactId>alipay-trade-sdk</artifactId>
+		  <version>2.0</version>
 		</dependency>
 		
 		<dependency>
@@ -246,14 +253,24 @@
 		
 		
 	</dependencies>
-	<!--
 	<build>
 	    <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+	<!--
 	      <plugin>
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-maven-plugin</artifactId>
 	      </plugin>
+	-->
 	    </plugins>
 	</build>
-	-->
 </project>
